@@ -27,4 +27,13 @@ export class ServersService {
   get servers(): Server[]{
     return [...this._servers]
   }
+  
+  getServer(id: number): Server{
+    const server: Server = this.servers.find(
+      (s) => {
+        return s.id == id;
+      }
+    )||{id:0,name:"unknown",status:"offline"};
+    return server;
+  }
 }
