@@ -3,17 +3,20 @@
         {
             "id": 1,
             "name": "Jack",
-            "email": "jack@iesjacaranda.es"
+            "email": "jack@iesjacaranda.es",
+            "password": "12345"
         },
         {
             "id": 2,
             "name": "Claire",
-            "email": "claire@iesjacaranda.es"
+            "email": "claire@iesjacaranda.es",
+            "password": "12345"
         },
         {
             "id": 3,
             "name": "Jamie",
-            "email": "jamie@iesjacaranda.es"
+            "email": "jamie@iesjacaranda.es",
+            "password": "12345"
         }
     ]
 }
