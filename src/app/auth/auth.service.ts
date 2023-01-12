@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of, Observable, switchMap } from 'rxjs';
 import { UsersService } from '../users/services/users.service';
 
 @Injectable({
@@ -22,25 +23,36 @@ export class AuthService {
     return localStorage.getItem('authenticated')==='true'
   }
  
-  login(email: string, password: string){
+  login(email: string, password: string):Observable<boolean>{
     //Recuperamos el usuario y comprobamos que la contraseña sea correcta
-    this.userService.getUserByEmail(email)
-    .subscribe({
-      next: (resp)=> {
-        if (resp.email===email && resp.password===password){
-          localStorage.setItem('authenticated', 'true');
-          
-        }
-        else{
-          localStorage.setItem('authenticaded', 'false');
-         
-        }
-      },
-      error: (error) => {
-        localStorage.setItem('authenticated', 'false');
-        
+    return this.userService.getUserByEmail(email)
+    .pipe( switchMap((user=> {
+      if (user[0].email===email && user[0].password===password){
+        localStorage.setItem('authenticated', 'true');
+        return of(true)
       }
-    })
+      else{
+        localStorage.setItem('authenticaded', 'false');
+        return of(false)
+      }
+    })))
+
+    // .subscribe({
+    //   next: (resp)=> {
+    //     if (resp.email===email && resp.password===password){
+    //       localStorage.setItem('authenticated', 'true');
+    //       return 
+    //     }
+    //     else{
+    //       localStorage.setItem('authenticaded', 'false');
+    //       return of(false)
+    //     }
+    //   },
+    //   error: (error) => {
+    //     localStorage.setItem('authenticated', 'false');
+    //     return of(false)
+    //   }
+    // })
     
     
   }

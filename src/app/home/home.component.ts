@@ -15,9 +15,20 @@ export class HomeComponent implements OnInit {
   }
 
   signIn():void{
-      this.authService.login(this.email,this.password);
-      this.router.navigate(['/Servers']);
+      console.log('Email: ', this.email, 'Password: ', this.password)
+      this.authService.login(this.email,this.password)
+      .subscribe({
+        next: (resp) => {
+          if (resp) this.router.navigate(['/servers']);
+          else confirm('Email o contraseña incorrectos');
+        }
+      })
+      
     }
+    
+  logOut():void{
+    this.authService.logout();
+  }
     
   
 }
