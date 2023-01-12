@@ -9,9 +9,12 @@ import { AuthService } from '../auth/auth.service';
 export class HomeComponent implements OnInit {
   email: string = '';
   password: string = '';
+  isLoggedIn!: boolean;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isAuthenticated();
+    
   }
 
   signIn():void{
@@ -19,8 +22,15 @@ export class HomeComponent implements OnInit {
       this.authService.login(this.email,this.password)
       .subscribe({
         next: (resp) => {
-          if (resp) this.router.navigate(['/servers']);
-          else confirm('Email o contraseña incorrectos');
+          if (resp) {
+            this.isLoggedIn=true;
+            this.router.navigate(['/servers']);
+          }
+          else {
+            this.email=''; 
+            this.password='';
+            confirm('Email o contraseña incorrectos');
+          }
         }
       })
       
@@ -28,6 +38,7 @@ export class HomeComponent implements OnInit {
     
   logOut():void{
     this.authService.logout();
+    this.isLoggedIn=false;
   }
     
   

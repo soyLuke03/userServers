@@ -1,6 +1,6 @@
 <h1>Server Manager App</h1>
 <p>Manage your Servers and Users</p>
-<section class=" text-center text-lg-start">
+<section class=" text-center text-lg-start" *ngIf="!isLoggedIn">
     <style>
       .rounded-t-5 {
         border-top-left-radius: 0.5rem;
@@ -42,7 +42,7 @@
   
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-              <button type="button" class="btn btn-secondary btn-block mb-4" (click)="logOut()">Log out</button>
+              
             </form>
   
           </div>
@@ -50,3 +50,4 @@
       </div>
     </div>
   </section>
+  <button type="button" class="btn btn-secondary btn-block mb-4" (click)="logOut()" *ngIf="isLoggedIn">Log out</button>

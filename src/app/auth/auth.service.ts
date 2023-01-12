@@ -25,17 +25,18 @@ export class AuthService {
  
   login(email: string, password: string):Observable<boolean>{
     //Recuperamos el usuario y comprobamos que la contraseña sea correcta
-    return this.userService.getUserByEmail(email)
+   return this.userService.getUserByEmail(email)
     .pipe( switchMap((user=> {
-      if (user[0].email===email && user[0].password===password){
+      if (user.length && user[0].password===password){
         localStorage.setItem('authenticated', 'true');
         return of(true)
       }
       else{
-        localStorage.setItem('authenticaded', 'false');
+        localStorage.setItem('authenticated', 'false');
         return of(false)
       }
     })))
+    
 
     // .subscribe({
     //   next: (resp)=> {
