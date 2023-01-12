@@ -4,19 +4,22 @@
             "id": 1,
             "name": "Jack",
             "email": "jack@iesjacaranda.es",
-            "password": "12345"
+            "password": "12345",
+            "rol": "USER"
         },
         {
             "id": 2,
             "name": "Claire",
             "email": "claire@iesjacaranda.es",
-            "password": "12345"
+            "password": "12345",
+            "rol": "ADMIN"
         },
         {
             "id": 3,
             "name": "Jamie",
             "email": "jamie@iesjacaranda.es",
-            "password": "12345"
+            "password": "12345",
+            "rol": "USER"
         }
     ]
 }
