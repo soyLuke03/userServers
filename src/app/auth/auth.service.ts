@@ -29,6 +29,7 @@ export class AuthService {
     .pipe( switchMap((user=> {
       if (user.length && user[0].password===password){
         localStorage.setItem('authenticated', 'true');
+        localStorage.setItem('rol',user[0].rol)
         return of(true)
       }
       else{
