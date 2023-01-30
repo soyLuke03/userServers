@@ -1,6 +1,6 @@
 <h1>Server Manager App</h1>
 <p>Manage your Servers and Users</p>
-<section class=" text-center text-lg-start" *ngIf="!isLoggedIn">
+<section class=" text-center text-lg-start" *ngIf="token==null">
     <style>
       .rounded-t-5 {
         border-top-left-radius: 0.5rem;
@@ -50,4 +50,4 @@
       </div>
     </div>
   </section>
-  <button type="button" class="btn btn-secondary btn-block mb-4" (click)="logOut()" *ngIf="isLoggedIn">Log out</button>
+  <button type="button" class="btn btn-secondary btn-block mb-4" (click)="logOut()" *ngIf="token!=null">Log out</button>

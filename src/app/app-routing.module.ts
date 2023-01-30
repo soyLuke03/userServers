@@ -28,10 +28,10 @@ const routes: Routes = [
   
   {
     path: 'servers',
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     component: ServersComponent,
     children: [
-      { path: ':id/edit', canActivate: [RolGuardGuard], component: EditServerComponent },
+      { path: ':id/edit'/*, canActivate: [RolGuardGuard]*/, component: EditServerComponent },
       { path: ':id', component: ServerComponent}
     ]
   },

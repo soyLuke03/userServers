@@ -10,10 +10,11 @@ export class HomeComponent implements OnInit {
   email: string = '';
   password: string = '';
   isLoggedIn!: boolean;
+  token: string|null = localStorage.getItem('token');
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isAuthenticated();
+    //this.isLoggedIn = this.authService.isAuthenticated();
     
   }
 
@@ -24,12 +25,12 @@ export class HomeComponent implements OnInit {
         next: (resp) => {
           if (resp) {
             this.isLoggedIn=true;
-            this.router.navigate(['/servers']);
+            this.router.navigate(['/']);
+            location.reload()
           }
           else {
             this.email=''; 
             this.password='';
-            confirm('Email o contraseña incorrectos');
           }
         }
       })
@@ -38,7 +39,9 @@ export class HomeComponent implements OnInit {
     
   logOut():void{
     this.authService.logout();
-    this.isLoggedIn=false;
+    //this.isLoggedIn=false;
+    localStorage.removeItem('token')
+    location.reload()
   }
     
   
